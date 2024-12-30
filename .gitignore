@@ -398,3 +398,21 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+*.idea/
+
+# Local dev files
+
+.env
+.runsettings
+.runsettings.*
+appsettings.[Dd]evelopment.json
+appsettings.[Ll]ocal.json
+appsettings.[Ss]taging.json
+appsettings.[Ss]andbox.json
+appsettings.[Pp]roduction.json
+
+# OS files
+
+Thumbs.db
+Desktop.ini
+.DS_Store
