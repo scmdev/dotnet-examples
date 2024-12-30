@@ -1,0 +1,6 @@
+﻿services:
+  dotnet-examples-api:
+    image: dotnet-examples-api
+    build:
+      context: .
+      dockerfile: Dockerfile
