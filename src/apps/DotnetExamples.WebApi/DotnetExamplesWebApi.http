@@ -1,0 +1,6 @@
+@DotnetExamples_WebApi_HostAddress = https://dotnet-examples-api.local.dev.com/
+
+GET {{DotnetExamples_WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

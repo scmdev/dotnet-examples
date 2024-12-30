@@ -4,23 +4,23 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-# DotnetExamplesApi start
+# DotnetExamples.WebApi start
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS webapi-build
 
 WORKDIR /src
 
-COPY ["../src/apps/DotnetExamplesApi/DotnetExamplesApi.csproj", "apps/DotnetExamplesApi/"]
-RUN dotnet restore "apps/DotnetExamplesApi/DotnetExamplesApi.csproj"
+COPY ["../src/apps/DotnetExamples.WebApi/DotnetExamples.WebApi.csproj", "apps/DotnetExamples.WebApi/"]
+RUN dotnet restore "apps/DotnetExamples.WebApi/DotnetExamples.WebApi.csproj"
 COPY . .
 
-WORKDIR "apps/DotnetExamplesApi"
+WORKDIR "apps/DotnetExamples.WebApi"
 
-RUN dotnet build "DotnetExamplesApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "DotnetExamples.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM webapi-build AS webapi-publish
 
-RUN dotnet publish "DotnetExamplesApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "DotnetExamples.WebApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS webapi-final
 
@@ -28,9 +28,9 @@ WORKDIR /app
 
 COPY --from=webapi-publish /app/publish .
 
-ENTRYPOINT ["dotnet", "DotnetExamplesApi.dll"]
+ENTRYPOINT ["dotnet", "DotnetExamples.WebApi.dll"]
 
-# DotnetExamplesApi end
+# DotnetExamples.WebApi end
 
 
 # DotnetExamples.BlazorApp start
