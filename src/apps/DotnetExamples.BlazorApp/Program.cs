@@ -1,3 +1,6 @@
+using System.Reflection;
+using Microsoft.AspNetCore.DataProtection;
+
 namespace DotnetExamples.BlazorApp;
 
 public class Program
@@ -7,7 +10,14 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-        builder.Services.AddRazorComponents()
+        builder.Services.AddDataProtection().SetApplicationName(Assembly.GetCallingAssembly().FullName!);
+        
+        builder.Services
+            .AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-CSRF-TOKEN";
+            })
+            .AddRazorComponents()
             .AddInteractiveServerComponents();
 
         var app = builder.Build();

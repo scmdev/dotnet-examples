@@ -20,7 +20,7 @@ public class Program
             app.MapOpenApi();
         }
 
-        app.UseHttpsRedirection();
+        //app.UseHttpsRedirection(); // Not necessary as we are using HTTP with nginx reverse proxy
 
         app.UseAuthorization();
 
